@@ -22,3 +22,10 @@ class Neighbourhood(models.Model):
     @classmethod
     def find_neighbourhood(cls, neighbourhood_id):
         return cls.objects.filter(id=neighbourhood_id)
+
+class Business(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    description = models.TextField(blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
