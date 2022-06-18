@@ -29,3 +29,12 @@ class Business(models.Model):
     description = models.TextField(blank=True)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+
+    def __str__(self):
+        return f'{self.name}Business'
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
